@@ -25,11 +25,11 @@
 
 .menus{
     margin: 123px 0 92px 19px;
-    width: 100%;
 }
 
 .menu {
-    margin: 31px 0 0 18px;
+    margin: 31px 0 0 0;
+    max-width: calc(100% - 19px);
 }
 
 .menu-title{
@@ -40,6 +40,7 @@
 
 .menu-itens{
     display: flex;
+    overflow-x: scroll;
 }
 
 .item {
@@ -79,5 +80,28 @@
     color: #000000;
     font-weight: normal;
     line-height: 19px;
+}
+
+.botton-bar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 92px;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-close-order{
+    height: 60px;
+    width: calc(100% - 40px);
+    border-radius: 60px;
+    border: none;
+    background-color: #CBCBCB;
+    font-family:'Roboto', sans-serif;
+    font-size: 20px;
+    color: #ffffff
 }
 

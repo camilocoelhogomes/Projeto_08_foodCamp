@@ -1,31 +1,31 @@
 const Item = (props) => {
-    console.log(props)
+    const { img, title, description, value } = props.item
     return (
         <li className='item'>
-            <img className='item-img' src={props.item.img} />
+            <img className='item-img' src={img} alt={title} />
             <h2 className='item-title'>
-                {props.item.title}
+                {title}
             </h2>
             <p className='item-subtitle'>
-                {props.item.description}
+                {description}
             </p>
             <p className='item-value'>
-                {props.item.value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                {value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             </p>
         </li>
     )
 }
 
 const Menu = (props) => {
-
+    const { title, itens, id } = props
     return (
-        <div className='menu'>
+        <div className='menu' >
             <h2 className='menu-title'>
-                {props.title}
+                {title}
             </h2>
             <nav>
-                <ul className='menu-itens'>
-                    {props.itens.map((item, key) =>
+                <ul id={id} className='menu-itens'>
+                    {itens.map((item, key) =>
                         <Item key={key} item={item} />
                     )}
                 </ul>
