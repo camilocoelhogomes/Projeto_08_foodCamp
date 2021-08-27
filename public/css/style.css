@@ -24,7 +24,7 @@
 }
 
 .menus{
-    margin: 123px 0 92px 19px;
+    margin: 123px 0 123px 19px;
 }
 
 .menu {
@@ -118,3 +118,15 @@
     color: #ffffff
 }
 
+.value-qtd{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dec-qtd{
+    color: #CF2B2B;
+}
+
+.add-qtd {
+    color: #32B72F;
+}

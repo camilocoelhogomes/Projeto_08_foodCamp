@@ -4,6 +4,7 @@ const Item = ({ item, type, id, menus, setMenus, selectedItems, setSelectedItems
 
 
     const clickItem = (type, id) => {
+
         const oldMenus = [...menus];
         if (oldMenus[type].itens[id].qtd === 0) {
             oldMenus[type].itens[id].qtd++;
@@ -23,7 +24,6 @@ const Item = ({ item, type, id, menus, setMenus, selectedItems, setSelectedItems
             oldMenus[type].itens[id].qtd = 0;
         }
         else {
-
             oldMenus[type].itens[id].qtd--;
         }
         setMenus(oldMenus);
@@ -33,7 +33,7 @@ const Item = ({ item, type, id, menus, setMenus, selectedItems, setSelectedItems
 
     return (
         <>
-            <li onClick={() => clickItem(type, id)} id={id} type={item.type} className={(item.qtd !== 0) ? 'selected-item' : 'item'}>
+            <li onClick={(event) => { event.stopPropagation(); clickItem(type, id) }} id={id} type={item.type} className={(item.qtd !== 0) ? 'selected-item' : 'item'}>
                 <img className='item-img' src={item.img} alt={item.title} />
                 <h2 className='item-title'>
                     {item.title}
@@ -50,9 +50,9 @@ const Item = ({ item, type, id, menus, setMenus, selectedItems, setSelectedItems
                     {
                         (item.qtd !== 0) ?
                             <div className='item-qtd'>
-                                <button onClick={() => addQtd(type, id)} className='add-qtd'>+</button>
+                                <button onClick={(event) => { event.stopPropagation(); decQtd(type, id) }} className='dec-qtd'>-</button>
                                 {item.qtd}
-                                <button onClick={() => decQtd(type, id)} className='dec-qtd'>-</button>
+                                <button onClick={(event) => { event.stopPropagation(); addQtd(type, id) }} className='add-qtd'>+</button>
                             </div> :
                             <></>
 
