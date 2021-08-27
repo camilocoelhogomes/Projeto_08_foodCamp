@@ -1,33 +1,29 @@
-const Item = (props) => {
-    const { img, title, description, value } = props.item
-    return (
-        <li className='item'>
-            <img className='item-img' src={img} alt={title} />
-            <h2 className='item-title'>
-                {title}
-            </h2>
-            <p className='item-subtitle'>
-                {description}
-            </p>
-            <p className='item-value'>
-                {value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-            </p>
-        </li>
-    )
-}
+import Item from "./Item";
 
-const Menu = (props) => {
-    const { title, itens, id } = props
+const Menu = ({ menu, menus, setMenus, selectedItems, setSelectedItems }) => {
     return (
         <div className='menu' >
             <h2 className='menu-title'>
-                {title}
+                {menu.title}
             </h2>
             <nav>
-                <ul id={id} className='menu-itens'>
-                    {itens.map((item, key) =>
-                        <Item key={key} item={item} />
-                    )}
+                <ul name={menu.name} className='menu-itens'>
+                    {
+                        //
+                        menu.itens.map((item, key) =>
+                            <Item
+                                item={item}
+                                type={menu.type}
+                                key={key}
+                                id={key}
+                                menus={menus}
+                                setMenus={setMenus}
+                                selectedItems={selectedItems}
+                                setSelectedItems={setSelectedItems}
+                            />
+                        )
+                        //*/
+                    }
                 </ul>
             </nav>
         </div>
