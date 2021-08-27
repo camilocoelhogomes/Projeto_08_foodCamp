@@ -1,7 +1,7 @@
 import React from "react";
 
 const Item = ({ item, type, id, menus, setMenus, selectedItems, setSelectedItems }) => {
-    console.log(selectedItems);
+
 
     const clickItem = (type, id) => {
         const oldMenus = [...menus];
@@ -56,7 +56,7 @@ const Item = ({ item, type, id, menus, setMenus, selectedItems, setSelectedItems
 
     return (
         <>
-            <li onClick={(event) => { event.stopPropagation(); clickItem(type, id) }} id={id} type={item.type} className={(item.qtd !== 0) ? 'selected-item' : 'item'}>
+            <li onClick={() => clickItem(type, id)} id={id} type={item.type} className={(item.qtd !== 0) ? 'selected-item' : 'item'}>
                 <img className='item-img' src={item.img} alt={item.title} />
                 <h2 className='item-title'>
                     {item.title}

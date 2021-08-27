@@ -121,7 +121,9 @@ const App = () => {
                 selectedItems={selectedItems}
                 setSelectedItems={setSelectedItems}
             />
-            <BottonBar />
+            <BottonBar
+                selectedItems={selectedItems}
+            />
         </>
     )
 }

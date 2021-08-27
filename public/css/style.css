@@ -118,6 +118,17 @@
     color: #ffffff
 }
 
+.button-close-order-green{
+    height: 60px;
+    width: calc(100% - 40px);
+    border-radius: 60px;
+    border: none;
+    background: #32B72F;
+    font-family:'Roboto', sans-serif;
+    font-size: 20px;
+    color: #ffffff
+}
+
 .value-qtd{
     display: flex;
     justify-content: space-between;
