@@ -1,7 +1,7 @@
 import React from 'react'
 import Menu from './Menu'
 
-const Menus = ({ menus, setMenus, selectedItems, setSelectedItems }) => {
+const Menus = ({ menus, clickItem, addQtd, decQtd }) => {
     return (
         <>
             <ul className='menus'>
@@ -10,10 +10,9 @@ const Menus = ({ menus, setMenus, selectedItems, setSelectedItems }) => {
                         <Menu
                             key={key}
                             menu={menu}
-                            menus={menus}
-                            setMenus={setMenus}
-                            selectedItems={selectedItems}
-                            setSelectedItems={setSelectedItems}
+                            clickItem={clickItem}
+                            addQtd={addQtd}
+                            decQtd={decQtd}
                         />
                     )
                 }

@@ -112,17 +112,76 @@ const App = () => {
         }
     )
 
+
+    const clickItem = (type, id) => {
+        const oldMenus = [...menus];
+        const oldSelectedItems = { ...selectedItems };
+        const newSelectedItems = {};
+
+        if (oldMenus[type].itens[id].qtd === 0) {
+            oldMenus[type].itens[id].qtd++;
+        }
+
+        Object.keys(oldSelectedItems).forEach((menu) => {
+            newSelectedItems[menu] = oldMenus.filter(item => item.name === menu)[0].itens.filter(item => item.qtd !== 0);
+        });
+
+        setMenus(oldMenus);
+        setSelectedItems(newSelectedItems);
+    }
+
+    const addQtd = (type, id) => {
+        const oldMenus = [...menus];
+        const oldSelectedItems = { ...selectedItems };
+        const newSelectedItems = {};
+        oldMenus[type].itens[id].qtd++;
+
+        Object.keys(oldSelectedItems).forEach((menu) => {
+            newSelectedItems[menu] = oldMenus.filter(item => item.name === menu)[0].itens.filter(item => item.qtd !== 0);
+        });
+
+        setMenus(oldMenus);
+        setSelectedItems(newSelectedItems);
+    }
+
+    const decQtd = (type, id) => {
+        const oldMenus = [...menus];
+        const oldSelectedItems = { ...selectedItems };
+        const newSelectedItems = {};
+        if (oldMenus[type].itens[id].qtd === 1) {
+            oldMenus[type].itens[id].qtd = 0;
+        }
+        else {
+            oldMenus[type].itens[id].qtd--;
+        }
+        Object.keys(oldSelectedItems).forEach((menu) => {
+            newSelectedItems[menu] = oldMenus.filter(item => item.name === menu)[0].itens.filter(item => item.qtd !== 0);
+        });
+
+        setMenus(oldMenus);
+        setSelectedItems(newSelectedItems);
+    }
+
+    const verificateSelectedItems = () => {
+        let test = 0;
+        Object.keys(selectedItems).forEach(menu => selectedItems[menu].length > 0 ? test++ : '');
+        console.log(test === 3);
+        return test === 3;
+    }
+
+
+
     return (
         <>
             <TopBar />
             <Menus
                 menus={menus}
-                setMenus={setMenus}
-                selectedItems={selectedItems}
-                setSelectedItems={setSelectedItems}
+                clickItem={clickItem}
+                addQtd={addQtd}
+                decQtd={decQtd}
             />
             <BottonBar
-                selectedItems={selectedItems}
+                verificateSelectedItems={verificateSelectedItems}
             />
         </>
     )

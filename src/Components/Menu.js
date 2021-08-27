@@ -1,6 +1,6 @@
 import Item from "./Item";
 
-const Menu = ({ menu, menus, setMenus, selectedItems, setSelectedItems }) => {
+const Menu = ({ menu, clickItem, addQtd, decQtd, }) => {
     return (
         <div className='menu' >
             <h2 className='menu-title'>
@@ -12,14 +12,13 @@ const Menu = ({ menu, menus, setMenus, selectedItems, setSelectedItems }) => {
                         //
                         menu.itens.map((item, key) =>
                             <Item
+                                key={key}
                                 item={item}
                                 type={menu.type}
-                                key={key}
                                 id={key}
-                                menus={menus}
-                                setMenus={setMenus}
-                                selectedItems={selectedItems}
-                                setSelectedItems={setSelectedItems}
+                                clickItem={clickItem}
+                                addQtd={addQtd}
+                                decQtd={decQtd}
                             />
                         )
                         //*/
