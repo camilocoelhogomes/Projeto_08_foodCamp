@@ -165,11 +165,33 @@ const App = () => {
     const verificateSelectedItems = () => {
         let test = 0;
         Object.keys(selectedItems).forEach(menu => selectedItems[menu].length > 0 ? test++ : '');
-        console.log(test === 3);
         return test === 3;
     }
 
+    const sendOrder = () => {
 
+        if (verificateSelectedItems()) {
+            const food = selectedItems.food.map((item, key) => `${key === 0 ? `` : `\t\t\t`} ${item.title}${item.qtd === 1 ? '' : ` (x${item.qtd})`}`);
+            const drink = selectedItems.drink.map((item, key) => `${key === 0 ? `` : `\t\t\t`} ${item.title}${item.qtd === 1 ? '' : ` (x${item.qtd})`}`);
+            const dessert = selectedItems.dessert.map((item, key) => `${key === 0 ? `` : `\t\t\t\t`} ${item.title}${item.qtd === 1 ? '' : ` (x${item.qtd})`}`);
+
+            const total = Object.keys(selectedItems)
+                .map(menu => selectedItems[menu].map(item => item.qtd * item.value)
+                    .reduce((totalMenu, totalItem) => totalMenu + totalItem))
+                .reduce((total, totalMenu) => total + totalMenu);
+
+            const orderMessage =
+                `
+            Olá gostaria de fazer o pedido:
+        Pratos: \t${food.join('\n')}
+        Bebidas: \t${drink.join('\n')}
+        Sobremesas: ${dessert.join('\n')}
+        Total: \t\t ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+            `
+            const messageURL = `https://wa.me/553173158478?text=${encodeURIComponent(orderMessage)}`
+            window.open(messageURL);
+        }
+    }
 
     return (
         <>
@@ -182,6 +204,7 @@ const App = () => {
             />
             <BottonBar
                 verificateSelectedItems={verificateSelectedItems}
+                sendOrder={sendOrder}
             />
         </>
     )

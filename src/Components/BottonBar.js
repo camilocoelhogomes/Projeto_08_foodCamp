@@ -1,8 +1,8 @@
-const BottonBar = ({ verificateSelectedItems }) => {
+const BottonBar = ({ verificateSelectedItems, sendOrder }) => {
 
     return (
         <div className='botton-bar'>
-            <button className={verificateSelectedItems() ? 'button-close-order-green' : 'button-close-order'}>
+            <button onClick={sendOrder} className={verificateSelectedItems() ? 'button-close-order-green' : 'button-close-order'}>
                 {
                     verificateSelectedItems() ?
                         <p className='button-text'>Fechar o Pedido</p> :
