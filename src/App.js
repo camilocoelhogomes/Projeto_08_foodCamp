@@ -224,8 +224,11 @@ const App = () => {
     return (
         <>
             <TopBar />
+
             <Router>
+
                 <Switch>
+
                     <Route path='/review'>
                         <ReviewOrder sendOrder={sendOrder} review={review} />
                     </Route>
@@ -242,9 +245,6 @@ const App = () => {
                             reviewOrder={reviewOrder}
                         />
                     </Route>
-
-
-
 
                 </Switch>
 
