@@ -52,6 +52,12 @@ button {
 	font-size: inherit;
 	font-family: inherit;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+	width: fit-content;
+	height: fit-content;
+}
 /* Config */
 :root{
     --fontHeader: 'Righteous', cursive; 

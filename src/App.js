@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
 import TopBar from "./Components/TopBar";
 import Menus from './Components/Menus';
 import BottonBar from "./Components/BottonBar";
-
+import ReviewOrder from './Components/ReviewOrder';
 
 const App = () => {
     const [menus, setMenus] = useState(
@@ -112,6 +119,13 @@ const App = () => {
         }
     )
 
+    const [review, setReview] = useState({
+        food: [],
+        drink: [],
+        dessert: [],
+        total: 0,
+    })
+
 
     const clickItem = (type, id) => {
         const oldMenus = [...menus];
@@ -168,6 +182,20 @@ const App = () => {
         return test === 3;
     }
 
+    const reviewOrder = () => {
+        if (verificateSelectedItems()) {
+            const reviewItems = { ...review };
+            reviewItems.food = selectedItems.food.map((item) => { return { title: item.title, qtd: item.qtd, value: item.value } });
+            reviewItems.drink = selectedItems.drink.map((item) => { return { title: item.title, qtd: item.qtd, value: item.value } });
+            reviewItems.dessert = selectedItems.dessert.map((item) => { return { title: item.title, qtd: item.qtd, value: item.value } });
+            reviewItems.total = Object.keys(selectedItems)
+                .map(menu => selectedItems[menu].map(item => item.qtd * item.value)
+                    .reduce((totalMenu, totalItem) => totalMenu + totalItem))
+                .reduce((total, totalMenu) => total + totalMenu);
+            setReview(reviewItems);
+        }
+    }
+
     const sendOrder = () => {
 
         if (verificateSelectedItems()) {
@@ -188,7 +216,7 @@ const App = () => {
         Sobremesas: ${dessert.join('\n')}
         Total: \t\t ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             `
-            const messageURL = `https://wa.me/553173158478?text=${encodeURIComponent(orderMessage)}`
+            const messageURL = `https://wa.me/${(Math.random() > 0.5) ? `553173158478` : `553198473684`}?text=${encodeURIComponent(orderMessage)}`
             window.open(messageURL);
         }
     }
@@ -196,16 +224,32 @@ const App = () => {
     return (
         <>
             <TopBar />
-            <Menus
-                menus={menus}
-                clickItem={clickItem}
-                addQtd={addQtd}
-                decQtd={decQtd}
-            />
-            <BottonBar
-                verificateSelectedItems={verificateSelectedItems}
-                sendOrder={sendOrder}
-            />
+            <Router>
+                <Switch>
+                    <Route path='/review'>
+                        <ReviewOrder sendOrder={sendOrder} review={review} />
+                    </Route>
+
+                    <Route path='/'>
+                        <Menus
+                            menus={menus}
+                            clickItem={clickItem}
+                            addQtd={addQtd}
+                            decQtd={decQtd}
+                        />
+                        <BottonBar
+                            verificateSelectedItems={verificateSelectedItems}
+                            reviewOrder={reviewOrder}
+                        />
+                    </Route>
+
+
+
+
+                </Switch>
+
+            </Router>
+
         </>
     )
 }
