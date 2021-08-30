@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import OrderItem from './OrderItem'
 
 const ReviewOrder = ({ sendOrder, review }) => {
     console.log(review);
@@ -11,30 +12,9 @@ const ReviewOrder = ({ sendOrder, review }) => {
 
             <ul className='review-card'>
                 {[
-                    review.food.map(item => <li className='review-item'>
-                        <span>
-                            {item.title} {item.qtd === 1 ? '' : `(x${item.qtd})`}
-                        </span>
-                        <span>
-                            {(item.qtd * item.value).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </span>
-                    </li>),
-                    review.drink.map(item => <li className='review-item'>
-                        <span>
-                            {item.title} {item.qtd === 1 ? '' : `(x${item.qtd})`}
-                        </span>
-                        <span>
-                            {(item.qtd * item.value).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </span>
-                    </li>),
-                    review.dessert.map(item => <li className='review-item'>
-                        <span>
-                            {item.title} {item.qtd === 1 ? '' : `(x${item.qtd})`}
-                        </span>
-                        <span>
-                            {(item.qtd * item.value).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </span>
-                    </li>),
+                    review.food.map(item => <OrderItem title={item.title} qtd={item.qtd} value={item.value} />),
+                    review.drink.map(item => <OrderItem title={item.title} qtd={item.qtd} value={item.value} />),
+                    review.dessert.map(item => <OrderItem title={item.title} qtd={item.qtd} value={item.value} />),
                     <li className='review-item bolder'>
                         <strong>
                             TOTAL:
