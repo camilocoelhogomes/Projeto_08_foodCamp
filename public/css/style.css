@@ -144,7 +144,7 @@
 
 .review-card {
     width: calc(100% - 20px);
-    padding: 30px 25px;
+    padding: 30px 25px 17px 25px;
     background-color: #ffffff;
     border-radius: 9px;
     margin: 33px 0;
@@ -173,4 +173,10 @@
 .review-item{
     display: flex;
     justify-content: space-between;
+    margin: 0 0 13px 0;
+    font-size: 22px;
+}
+
+.bolder{
+    font-weight: bold;
 }

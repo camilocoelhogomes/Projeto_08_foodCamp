@@ -16,7 +16,7 @@ const ReviewOrder = ({ sendOrder, review }) => {
                             {item.title} {item.qtd === 1 ? '' : `(x${item.qtd})`}
                         </span>
                         <span>
-                            {item.qtd * item.value}
+                            {(item.qtd * item.value).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </li>),
                     review.drink.map(item => <li className='review-item'>
@@ -24,7 +24,7 @@ const ReviewOrder = ({ sendOrder, review }) => {
                             {item.title} {item.qtd === 1 ? '' : `(x${item.qtd})`}
                         </span>
                         <span>
-                            {item.qtd * item.value}
+                            {(item.qtd * item.value).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </li>),
                     review.dessert.map(item => <li className='review-item'>
@@ -32,15 +32,15 @@ const ReviewOrder = ({ sendOrder, review }) => {
                             {item.title} {item.qtd === 1 ? '' : `(x${item.qtd})`}
                         </span>
                         <span>
-                            {item.qtd * item.value}
+                            {(item.qtd * item.value).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </li>),
-                    <li className='review-item'>
+                    <li className='review-item bolder'>
                         <strong>
                             TOTAL:
                         </strong>
                         <span>
-                            {review.total}
+                            {(review.total).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
                         </span>
                     </li>
 
