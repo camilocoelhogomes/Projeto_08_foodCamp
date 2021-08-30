@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
 
 import TopBar from "./Components/TopBar";
@@ -224,7 +223,6 @@ const App = () => {
     return (
         <>
             <TopBar />
-
             <Router>
 
                 <Switch>
@@ -249,7 +247,6 @@ const App = () => {
                 </Switch>
 
             </Router>
-
         </>
     )
 }
