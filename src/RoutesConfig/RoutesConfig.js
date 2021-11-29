@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import SignUp from '../pages/signUp/SignUp';
+import SignIn from '../pages/signIn/SignIn';
 
 const RoutesConfig = function () {
   return (
@@ -13,6 +14,9 @@ const RoutesConfig = function () {
       <Switch>
         <Route path="/sign-up" exact>
           <SignUp />
+        </Route>
+        <Route path="/sign-in" exact>
+          <SignIn />
         </Route>
       </Switch>
     </BrowserRouter>

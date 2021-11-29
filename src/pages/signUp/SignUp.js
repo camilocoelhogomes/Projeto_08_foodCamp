@@ -5,12 +5,25 @@ import PassWordRequirements from './PassWordRequirements';
 import StyledButton from '../../Components/StyledButton';
 import StyledInput from '../../Components/StyledInput';
 import UserContext from '../../context/UserContext';
+import foodCampApi from '../../services/api/foodCamp';
 
 const SignUp = function () {
   const { userSign, updateUserSign } = useContext(UserContext);
 
+  const submitSignUp = (e) => {
+    e.preventDefault();
+    if (!/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,}).*$/.test(userSign.restaurantPassword)) {
+      return;
+    }
+    foodCampApi.signUpApi(userSign)
+      .then((res) => console.log(res))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <StyledLogin>
+    <StyledLogin onSubmit={submitSignUp}>
       <header className="header-login">
         <h1>FoodCamp</h1>
       </header>
