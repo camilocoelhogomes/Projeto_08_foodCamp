@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -29,8 +30,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
-    background-color: #8F53BF;
+	  line-height: 1;
+    background-color: #EEEEEE;
     padding: 24px 16px 16px 16px;
 
 }
