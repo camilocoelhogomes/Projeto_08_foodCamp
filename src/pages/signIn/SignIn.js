@@ -1,20 +1,24 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import StyledButton from '../../Components/StyledButton';
 import StyledInput from '../../Components/StyledInput';
 import UserContext from '../../context/UserContext';
 import foodCampApi from '../../services/api/foodCamp';
 
 const SignIn = function () {
-  const { userSign, updateUserSign } = useContext(UserContext);
+  const { userSign, updateUserSign, setRestaurantAuth } = useContext(UserContext);
+  const history = useHistory();
 
   const submitSignIn = (e) => {
     e.preventDefault();
     foodCampApi.signInApi(userSign)
-      .then((res) => console.log(res))
+      .then((res) => {
+        setRestaurantAuth(res.data);
+        history.push(`/owner/${res.data.url}`);
+      })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error.response.data);
       });
   };
 

@@ -5,6 +5,7 @@ import UserContext from './context/UserContext';
 
 const App = function () {
   const [userSign, setUserSign] = useState();
+  const [restaurantAuth, setRestaurantAuth] = useState();
 
   const updateUserSign = ({ input, value }) => {
     const newUserSign = { ...userSign };
@@ -15,7 +16,12 @@ const App = function () {
   const userContext = useMemo(() => ({
     userSign,
     updateUserSign,
-  }), [userSign, updateUserSign]);
+    restaurantAuth,
+    setRestaurantAuth,
+  }), [userSign,
+    updateUserSign,
+    restaurantAuth,
+    setRestaurantAuth]);
 
   return (
     <div className="App">

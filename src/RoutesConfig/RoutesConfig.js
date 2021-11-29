@@ -7,6 +7,7 @@ import {
 
 import SignUp from '../pages/signUp/SignUp';
 import SignIn from '../pages/signIn/SignIn';
+import Owner from '../pages/owner/Owner';
 
 const RoutesConfig = function () {
   return (
@@ -17,6 +18,9 @@ const RoutesConfig = function () {
         </Route>
         <Route path="/sign-in" exact>
           <SignIn />
+        </Route>
+        <Route path="/owner/:restaurantUrl" exact>
+          <Owner />
         </Route>
       </Switch>
     </BrowserRouter>

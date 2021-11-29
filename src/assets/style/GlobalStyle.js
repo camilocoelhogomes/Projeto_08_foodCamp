@@ -52,10 +52,8 @@ table {
 }
 
 h1{
-    font-family: 'SairaStencilOne', sans-serif;
-    font-size: 32px;
-    line-height: 50px;
-    color:#FFFFFF;
+    font-family: var(--fontHeader);
+    font-size: 44px;
 }
 
 h2{
