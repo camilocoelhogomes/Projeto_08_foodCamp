@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PassWordRequirements from './PassWordRequirements';
 import StyledButton from '../../Components/StyledButton';
 import StyledInput from '../../Components/StyledInput';
+import UserContext from '../../context/UserContext';
 
 const SignUp = function () {
+  const { userSign, updateUserSign } = useContext(UserContext);
+
   return (
     <StyledLogin>
       <header className="header-login">
@@ -13,30 +16,54 @@ const SignUp = function () {
       </header>
       <form className="submit-form">
         <StyledInput
+          required
           placeholder="Nome do Restaurante"
+          value={(userSign?.restaurantName || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantName', value: e.target.value })}
         />
         <StyledInput
+          required
           placeholder="E-mail"
+          value={(userSign?.restaurantEmail || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantEmail', value: e.target.value })}
           type="email"
         />
         <StyledInput
+          required
           placeholder="Número do Wpp"
+          value={(userSign?.restaurantWppNumber || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantWppNumber', value: e.target.value })}
         />
         <StyledInput
+          required
           placeholder="Url para a Imagem de Perfil"
+          value={(userSign?.restaurantImg || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantImg', value: e.target.value })}
         />
         <StyledInput
+          required
           placeholder="Link para o Restaurante"
+          value={(userSign?.restaurantUrlName || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantUrlName', value: e.target.value })}
         />
         <StyledInput
+          required
           placeholder="Senha"
           type="password"
+          value={(userSign?.restaurantPassword || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantPassword', value: e.target.value })}
         />
         <StyledInput
+          required
           placeholder="Confirme a Senha"
           type="password"
+          value={(userSign?.restaurantConfirmPassword || '')}
+          onChange={(e) => updateUserSign({ input: 'restaurantConfirmPassword', value: e.target.value })}
         />
-        <PassWordRequirements password="oi" passwordConfirm="oi" />
+        <PassWordRequirements
+          password={userSign?.restaurantPassword}
+          passwordConfirm={userSign?.restaurantConfirmPassword}
+        />
         <StyledButton type="submit">
           Cadastrar
         </StyledButton>
