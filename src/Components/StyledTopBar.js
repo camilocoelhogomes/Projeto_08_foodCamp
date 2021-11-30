@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { RestaurantContextProvider } from '../context/RestaurantContext';
 
 const TopBar = function () {
+  const { restaurantData } = useContext(RestaurantContextProvider);
   return (
     <StyledTopBar>
-      <h1 className="top-bar-title">
-        FoodCamp
-      </h1>
-      <p className="top-bar-subtitle">
-        Sua comida em 6 minutos
-      </p>
+      <div className="restaurant-logo-area">
+        <img className="restaurant-logo-img" src={restaurantData.restaurantImg} alt="restaurant" />
+      </div>
+      <div>
+        <h1 className="top-bar-title">
+          {restaurantData.restaurantName}
+        </h1>
+      </div>
     </StyledTopBar>
   );
 };
@@ -26,12 +30,27 @@ const StyledTopBar = styled.div`
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: start;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
+  align-items: center;
+  gap: 8px;
+
   .top-bar-subtitle{
   font-size: 18px;
   line-height: 21px;
+  }
+  .restaurant-logo-area{
+    background-color: #ffffff;
+    height: 76px;
+    width: 76px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .restaurant-logo-img{
+    width: 100%;
+
   }
 `;

@@ -60,7 +60,7 @@ h2{
     font-family: 'RelewayBold';
     font-size: 26px;
     line-height: 31px;
-    color:#FFFFFF;
+    color:#000000;
     font-weight: 700;
 }
 

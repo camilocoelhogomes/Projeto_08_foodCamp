@@ -11,7 +11,7 @@ const StyledInput = styled.input`
     color: ${({ error }) => (error ? '#FF0000' : '#000000')};
     padding: 17px 15px;
     font-family: 'Raleway', sans-serif;
-
+    flex-grow: 1;
     ::placeholder{
         font-family: 'Raleway', sans-serif;
         font-size: 20px;

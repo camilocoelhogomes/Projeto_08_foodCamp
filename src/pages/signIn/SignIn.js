@@ -5,9 +5,11 @@ import StyledButton from '../../Components/StyledButton';
 import StyledInput from '../../Components/StyledInput';
 import UserContext from '../../context/UserContext';
 import foodCampApi from '../../services/api/foodCamp';
+import { RestaurantContextProvider } from '../../context/RestaurantContext';
 
 const SignIn = function () {
   const { userSign, updateUserSign, setRestaurantAuth } = useContext(UserContext);
+  const { setRestaurantData } = useContext(RestaurantContextProvider);
   const history = useHistory();
 
   const submitSignIn = (e) => {
@@ -15,6 +17,7 @@ const SignIn = function () {
     foodCampApi.signInApi(userSign)
       .then((res) => {
         setRestaurantAuth(res.data);
+        setRestaurantData(res.data);
         history.push(`/owner/${res.data.url}`);
       })
       .catch((error) => {

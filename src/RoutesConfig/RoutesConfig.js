@@ -8,6 +8,7 @@ import {
 import SignUp from '../pages/signUp/SignUp';
 import SignIn from '../pages/signIn/SignIn';
 import Owner from '../pages/owner/Owner';
+import RestaurantContext from '../context/RestaurantContext';
 
 const RoutesConfig = function () {
   return (
@@ -16,12 +17,14 @@ const RoutesConfig = function () {
         <Route path="/sign-up" exact>
           <SignUp />
         </Route>
-        <Route path="/sign-in" exact>
-          <SignIn />
-        </Route>
-        <Route path="/owner/:restaurantUrl" exact>
-          <Owner />
-        </Route>
+        <RestaurantContext>
+          <Route path="/sign-in" exact>
+            <SignIn />
+          </Route>
+          <Route path="/owner/:restaurantUrl" exact>
+            <Owner />
+          </Route>
+        </RestaurantContext>
       </Switch>
     </BrowserRouter>
   );
