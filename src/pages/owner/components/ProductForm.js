@@ -31,7 +31,7 @@ const ProductForm = function () {
   };
   return (
     <StyledProductForm onSubmit={submit}>
-      <h2>Inserir Produto</h2>
+      <h1>Inserir Produto</h1>
       <div className="form-area">
         <div className="input-area">
           <StyledInput

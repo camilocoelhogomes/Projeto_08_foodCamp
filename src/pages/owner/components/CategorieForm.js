@@ -30,7 +30,7 @@ const CategorieForm = function () {
 
   return (
     <StyledCategorieForm onSubmit={submitForm}>
-      <h2>Inserir Categoria</h2>
+      <h1>Inserir Categoria</h1>
       <div className="input-area">
         <StyledInput
           required

@@ -6,21 +6,23 @@ import CategorieForm from './components/CategorieForm';
 import ProductForm from './components/ProductForm';
 import { useRestaurant } from '../../context/RestaurantContext';
 import foodCampApi from '../../services/api/foodCamp';
+import MenuPreview from './components/MenuPreview';
 
 const Owner = function () {
   const { restaurantData, setRestaurantData } = useRestaurant();
   const { restaurantUrl } = useParams();
-  console.log(restaurantData);
   useEffect(() => {
     foodCampApi.getRestaurantInfo({ url: restaurantUrl })
       .then((res) => setRestaurantData(res.data))
       .catch((err) => console.log(err.response));
   }, []);
+  if (!restaurantData) return <div />;
   return (
     <StyledOwner>
       <TopBar />
       <CategorieForm />
       <ProductForm />
+      <MenuPreview />
     </StyledOwner>
   );
 };
@@ -29,4 +31,7 @@ export default Owner;
 
 const StyledOwner = styled.div`
 padding: 92px 0 0 0;
+display: flex;
+flex-direction: column;
+gap: 16px;
 `;
