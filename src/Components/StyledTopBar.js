@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { RestaurantContextProvider } from '../context/RestaurantContext';
+import { useRestaurant } from '../context/RestaurantContext';
 
 const TopBar = function () {
-  const { restaurantData } = useContext(RestaurantContextProvider);
+  const { restaurantData } = useRestaurant();
   return (
     <StyledTopBar>
       <div className="restaurant-logo-area">

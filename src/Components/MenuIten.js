@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useOrder } from '../context/OrderContext';
 
 const MenuItem = function ({ menuItem }) {
+  const { orderData, updateOrder } = useOrder();
+
   return (
     <StyledMenuItem>
       <img className="item-img" src={menuItem.productImg} alt={menuItem.productDescription} />
@@ -18,7 +21,23 @@ const MenuItem = function ({ menuItem }) {
         <p className="item-value">
           {Number(menuItem.productPrice).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </p>
-
+        <div className="item-qtd">
+          <button
+            type="button"
+            className="dec-qtd"
+            onClick={() => updateOrder({ itemId: menuItem.productId, remove: true })}
+          >
+            -
+          </button>
+          {orderData.filter((item) => item === menuItem.productId).length}
+          <button
+            type="button"
+            className="add-qtd"
+            onClick={() => updateOrder({ itemId: menuItem.productId, add: true })}
+          >
+            +
+          </button>
+        </div>
       </div>
     </StyledMenuItem>
   );

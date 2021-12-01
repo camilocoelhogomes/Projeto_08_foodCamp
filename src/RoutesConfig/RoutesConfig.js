@@ -9,6 +9,8 @@ import SignUp from '../pages/signUp/SignUp';
 import SignIn from '../pages/signIn/SignIn';
 import Owner from '../pages/owner/Owner';
 import RestaurantContext from '../context/RestaurantContext';
+import Restaurant from '../pages/restaurant/Restaurant';
+import OrderContext from '../context/OrderContext';
 
 const RoutesConfig = function () {
   return (
@@ -24,6 +26,11 @@ const RoutesConfig = function () {
           <Route path="/owner/:restaurantUrl" exact>
             <Owner />
           </Route>
+          <OrderContext>
+            <Route path="/:restaurantUrl" exact>
+              <Restaurant />
+            </Route>
+          </OrderContext>
         </RestaurantContext>
       </Switch>
     </BrowserRouter>
