@@ -23,10 +23,10 @@ const RoutesConfig = function () {
           <Route path="/sign-in" exact>
             <SignIn />
           </Route>
-          <Route path="/owner/:restaurantUrl" exact>
-            <Owner />
-          </Route>
           <OrderContext>
+            <Route path="/owner/:restaurantUrl" exact>
+              <Owner />
+            </Route>
             <Route path="/:restaurantUrl" exact>
               <Restaurant />
             </Route>

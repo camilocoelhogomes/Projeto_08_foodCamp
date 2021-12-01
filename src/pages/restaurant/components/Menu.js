@@ -10,13 +10,14 @@ const Menu = function () {
       <h1>Menu</h1>
       {restaurantData.categories
         .map(
-          (categorie) => (
-            <Categorie
-              key={categorie.categorieId}
-              itens={categorie.categorieItens}
-              title={categorie.categorieName}
-            />
-          ),
+          (categorie) => (categorie.categorieItens.length === 0 ? <div />
+            : (
+              <Categorie
+                key={categorie.categorieId}
+                itens={categorie.categorieItens}
+                title={categorie.categorieName}
+              />
+            )),
         )}
     </StyledMenu>
   );

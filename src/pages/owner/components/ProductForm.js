@@ -34,6 +34,13 @@ const ProductForm = function () {
       <h1>Inserir Produto</h1>
       <div className="form-area">
         <div className="input-area">
+          <StyledSelect
+            required
+            value={product?.categorieId}
+            placeholder="Categoria do Produto"
+            onChange={(e) => updateProduct({ value: e.target.value, input: 'categorieId' })}
+            options={restaurantData?.categories}
+          />
           <StyledInput
             required
             value={product?.productName || ''}
@@ -63,13 +70,6 @@ const ProductForm = function () {
             value={product?.productNumber || ''}
             placeholder="Número do Produto no cardápio"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'productNumber' })}
-          />
-          <StyledSelect
-            required
-            value={product?.categorieId}
-            placeholder="Categoria do Produto"
-            onChange={(e) => updateProduct({ value: e.target.value, input: 'categorieId' })}
-            options={restaurantData?.categories}
           />
         </div>
         <button className="submit-categorie" type="submit">

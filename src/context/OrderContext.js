@@ -9,7 +9,9 @@ export const OrderContextProvider = createContext();
 
 const OrderContext = function ({ children }) {
   const [orderData, setOrderData] = useState([]);
+
   const updateOrder = ({ itemId, add, remove }) => {
+    if (!orderData) return null;
     const newOrder = [...orderData];
     if (!!add === !!remove) return null;
     if (add) {

@@ -6,7 +6,7 @@ const MenuItem = function ({ menuItem }) {
   const { orderData, updateOrder } = useOrder();
 
   return (
-    <StyledMenuItem>
+    <StyledMenuItem isSelected={orderData.some((item) => item === menuItem.productId)}>
       <img className="item-img" src={menuItem.productImg} alt={menuItem.productDescription} />
       <h2 className="item-title">
         {menuItem.productNumber}
@@ -50,13 +50,12 @@ const StyledMenuItem = styled.div`
     height: 216px;
     background-color: #ffffff;
     border-radius: 9px;
-    box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);
+    box-shadow: ${({ isSelected }) => (isSelected ? '0px 0px 10px -4px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 5px #32B72F;' : '0px 0px 10px -4px rgba(0, 0, 0, 0.25);')};
     display: flex;
     flex-direction: column;
     padding: 18px 14px 14px 14px;
     justify-content: space-between;
     margin: 18px 16px 0 0;
-
   .item-title{
     font-size: 16px;
     font-weight: bold;

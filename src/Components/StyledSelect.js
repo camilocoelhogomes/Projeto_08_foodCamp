@@ -4,6 +4,7 @@ import React from 'react';
 const StyledSelect = function ({ options, ...otherPropos }) {
   return (
     <Styled {...otherPropos}>
+      <option value="">--- Selecione a Categoria ---</option>
       {
         options
           ? options.map((item) => (
