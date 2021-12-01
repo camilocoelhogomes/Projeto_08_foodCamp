@@ -16,7 +16,7 @@ const StyledInput = styled.input`
         font-family: 'Raleway', sans-serif;
         font-size: 20px;
         line-height: 23px;
-        color: ${({ error }) => (error ? '#FF0000' : '#000000')};
+        color: ${({ error }) => (error ? '#FF0000' : '#aaa')};
     }
 `;
 

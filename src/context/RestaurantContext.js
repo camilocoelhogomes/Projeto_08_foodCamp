@@ -2,6 +2,7 @@ import React, {
   useState,
   createContext,
   useMemo,
+  useContext,
 } from 'react';
 
 export const RestaurantContextProvider = createContext();
@@ -22,3 +23,5 @@ const RestaurantContext = function ({ children }) {
 };
 
 export default RestaurantContext;
+
+export const useRestaurant = () => useContext(RestaurantContextProvider);

@@ -2,6 +2,9 @@ import axios from 'axios';
 
 // const API = 'https://food-camp-cardapio.herokuapp.com';
 const API = 'http://localhost:4000';
+
+const createHeaders = (token) => ({ headers: { Authorization: `Bearer ${token}` } });
+
 const signUpApi = ({
   restaurantName,
   restaurantEmail,
@@ -28,9 +31,20 @@ const signInApi = ({
   restaurantPassword,
 });
 
+const postCategorie = (
+  {
+    token,
+    categorie,
+    restaurantUrl,
+  },
+) => axios.post(`${API}/${restaurantUrl}/categorie`, {
+  categorieName: categorie,
+}, createHeaders(token));
+
 const foodCampApi = {
   signUpApi,
   signInApi,
+  postCategorie,
 };
 
 export default foodCampApi;
