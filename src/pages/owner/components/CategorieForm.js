@@ -33,6 +33,7 @@ const CategorieForm = function () {
       <h2>Inserir Categoria</h2>
       <div className="input-area">
         <StyledInput
+          required
           value={newCategorie}
           onChange={(e) => setNewCategorie(e.target.value)}
         />

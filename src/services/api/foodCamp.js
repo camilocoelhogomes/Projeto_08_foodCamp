@@ -41,10 +41,32 @@ const postCategorie = (
   categorieName: categorie,
 }, createHeaders(token));
 
+const getRestaurantInfo = ({ url }) => axios.get(`${API}/${url}`);
+
+const postProduct = ({
+  restaurantUrl,
+  categorieId,
+  productImg,
+  productName,
+  productDescription,
+  productPrice,
+  productNumber,
+  token,
+}) => axios.post(`${API}/${restaurantUrl}/menu-item`, {
+  categorieId,
+  productImg,
+  productName,
+  productDescription,
+  productPrice,
+  productNumber,
+}, createHeaders(token));
+
 const foodCampApi = {
   signUpApi,
   signInApi,
   postCategorie,
+  getRestaurantInfo,
+  postProduct,
 };
 
 export default foodCampApi;

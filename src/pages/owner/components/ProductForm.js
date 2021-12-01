@@ -1,52 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { IoIosSend } from 'react-icons/io';
+import { useParams } from 'react-router-dom';
 import StyledInput from '../../../Components/StyledInput';
+import { useRestaurant } from '../../../context/RestaurantContext';
+import StyledSelect from '../../../Components/StyledSelect';
+import UserContext from '../../../context/UserContext';
+import foodCampApi from '../../../services/api/foodCamp';
 
 const ProductForm = function () {
-  const [product, setProduct] = useState({
-
-  });
+  const { restaurantData, setRestaurantData } = useRestaurant();
+  const { restaurantAuth } = useContext(UserContext);
+  const [product, setProduct] = useState();
+  const { restaurantUrl } = useParams();
   const updateProduct = ({ value, input }) => {
     const newProduct = { ...product };
     newProduct[input] = value;
     setProduct(newProduct);
   };
-
+  const submit = (e) => {
+    e.preventDefault();
+    foodCampApi.postProduct(
+      {
+        ...product,
+        token: restaurantAuth.userToken,
+        restaurantUrl,
+      },
+    ).then((res) => setRestaurantData(res.data))
+      .catch((err) => console.log(err.response));
+  };
   return (
-    <StyledProductForm>
+    <StyledProductForm onSubmit={submit}>
       <h2>Inserir Produto</h2>
       <div className="form-area">
         <div className="input-area">
           <StyledInput
-            value={product.productName || ''}
+            required
+            value={product?.productName || ''}
             placeholder="Título"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'productName' })}
           />
           <StyledInput
-            value={product.productImg || ''}
+            required
+            value={product?.productImg || ''}
             placeholder="URL da image"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'productImg' })}
           />
           <StyledInput
-            value={product.productDescription || ''}
+            required
+            value={product?.productDescription || ''}
             placeholder="Descrição"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'productDescription' })}
           />
           <StyledInput
-            value={product.productPrice || ''}
+            required
+            value={product?.productPrice || ''}
             placeholder="Preço"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'productPrice' })}
           />
           <StyledInput
-            value={product.productNumber || ''}
-            placeholder="Número do Produto"
+            required
+            value={product?.productNumber || ''}
+            placeholder="Número do Produto no cardápio"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'productNumber' })}
           />
-          <StyledInput
-            value={product.categorieId || ''}
+          <StyledSelect
+            required
+            value={product?.categorieId}
             placeholder="Categoria do Produto"
             onChange={(e) => updateProduct({ value: e.target.value, input: 'categorieId' })}
+            options={restaurantData?.categories}
           />
         </div>
         <button className="submit-categorie" type="submit">

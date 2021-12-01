@@ -21,7 +21,7 @@ const SignIn = function () {
         history.push(`/owner/${res.data.url}`);
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error.response);
       });
   };
 
