@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MenuItem = function ({ menuItem }) {
-  console.log(menuItem);
   return (
     <StyledMenuItem>
       <img className="item-img" src={menuItem.productImg} alt={menuItem.productDescription} />
