@@ -5,7 +5,7 @@ import React, {
   useContext,
 } from 'react';
 
-export const RestaurantContextProvider = createContext();
+const RestaurantContextProvider = createContext();
 
 const RestaurantContext = function ({ children }) {
   const [restaurantData, setRestaurantData] = useState();

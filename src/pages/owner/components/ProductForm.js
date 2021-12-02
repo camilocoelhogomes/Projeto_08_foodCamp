@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { IoIosSend } from 'react-icons/io';
 import { useParams } from 'react-router-dom';
@@ -7,17 +7,14 @@ import { useRestaurant } from '../../../context/RestaurantContext';
 import StyledSelect from '../../../Components/StyledSelect';
 import UserContext from '../../../context/UserContext';
 import foodCampApi from '../../../services/api/foodCamp';
+import { useEditMenu } from '../../../context/EditMenuContext';
 
 const ProductForm = function () {
   const { restaurantData, setRestaurantData } = useRestaurant();
   const { restaurantAuth } = useContext(UserContext);
-  const [product, setProduct] = useState();
+  const { product, updateProduct } = useEditMenu();
   const { restaurantUrl } = useParams();
-  const updateProduct = ({ value, input }) => {
-    const newProduct = { ...product };
-    newProduct[input] = value;
-    setProduct(newProduct);
-  };
+
   const submit = (e) => {
     e.preventDefault();
     foodCampApi.postProduct(

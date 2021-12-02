@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import BottonBar from '../../Components/BottonBar';
 import TopBar from '../../Components/StyledTopBar';
 import { useRestaurant } from '../../context/RestaurantContext';
 import foodCampApi from '../../services/api/foodCamp';
@@ -19,6 +20,7 @@ const Restaurant = function () {
     <StyledRestaurant>
       <TopBar />
       <Menu />
+      <BottonBar />
     </StyledRestaurant>
   );
 };
@@ -26,7 +28,7 @@ const Restaurant = function () {
 export default Restaurant;
 
 const StyledRestaurant = styled.div`
-padding: 92px 0 0 0;
+padding: 92px 0;
 display: flex;
 flex-direction: column;
 gap: 16px;

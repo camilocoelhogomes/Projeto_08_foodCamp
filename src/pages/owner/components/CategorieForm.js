@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { IoIosSend } from 'react-icons/io';
 import { useParams } from 'react-router-dom';
@@ -6,9 +6,10 @@ import StyledInput from '../../../Components/StyledInput';
 import UserContext from '../../../context/UserContext';
 import foodCampApi from '../../../services/api/foodCamp';
 import { useRestaurant } from '../../../context/RestaurantContext';
+import { useEditMenu } from '../../../context/EditMenuContext';
 
 const CategorieForm = function () {
-  const [newCategorie, setNewCategorie] = useState('');
+  const { newCategorie, updateCategorie, setNewCategorie } = useEditMenu();
   const { restaurantUrl } = useParams();
   const { restaurantAuth } = useContext(UserContext);
   const { setRestaurantData } = useRestaurant();
@@ -23,7 +24,7 @@ const CategorieForm = function () {
     )
       .then((res) => {
         setRestaurantData(res.data);
-        setNewCategorie('');
+        setNewCategorie({});
       })
       .catch((err) => console.log(err.response));
   };
@@ -34,8 +35,8 @@ const CategorieForm = function () {
       <div className="input-area">
         <StyledInput
           required
-          value={newCategorie}
-          onChange={(e) => setNewCategorie(e.target.value)}
+          value={newCategorie.categorieName}
+          onChange={(e) => updateCategorie({ input: 'categorieName', value: e.target.value })}
         />
         <button className="submit-categorie" type="submit">
           <IoIosSend size="29px" />

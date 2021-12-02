@@ -7,6 +7,7 @@ import ProductForm from './components/ProductForm';
 import { useRestaurant } from '../../context/RestaurantContext';
 import foodCampApi from '../../services/api/foodCamp';
 import MenuPreview from './components/MenuPreview';
+import EditMenuContext from '../../context/EditMenuContext';
 
 const Owner = function () {
   const { restaurantData, setRestaurantData } = useRestaurant();
@@ -19,10 +20,12 @@ const Owner = function () {
   if (!restaurantData) return <div />;
   return (
     <StyledOwner>
-      <TopBar />
-      <CategorieForm />
-      <ProductForm />
-      <MenuPreview />
+      <EditMenuContext>
+        <TopBar />
+        <CategorieForm />
+        <ProductForm />
+        <MenuPreview />
+      </EditMenuContext>
     </StyledOwner>
   );
 };
