@@ -1,25 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IoMdCreate } from 'react-icons/io';
+import { IoMdCreate, IoMdTrash } from 'react-icons/io';
 import MenuItemAdmin from './MenuItemAdmin';
 import SubmitButton from './SubmitButton';
 import { useEditMenu } from '../../../context/EditMenuContext';
+import { useUser } from '../../../context/UserContext';
+import foodCampApi from '../../../services/api/foodCamp';
+import { useRestaurant } from '../../../context/RestaurantContext';
 
 const CategorieAdmin = function ({ itens, title, id }) {
   const { setNewCategorie } = useEditMenu();
+  const { restaurantAuth } = useUser();
+  const { setRestaurantData } = useRestaurant();
+
   const updateCategorie = () => {
     setNewCategorie({
       categorieId: id,
       categorieName: title,
     });
   };
+
+  const deleteCategorie = () => {
+    foodCampApi.deleteCategorie({
+      token: restaurantAuth.userToken,
+      categorieId: id,
+      restaurantUrl: restaurantAuth.url,
+    }).then((res) => setRestaurantData(res.data))
+      .catch((err) => console.log(err.response));
+  };
+
   return (
     <StyledCategorieAdmin>
       <div className="categorie-header">
         <h2 className="menu-title">{title}</h2>
-        <SubmitButton onClick={updateCategorie}>
-          <IoMdCreate />
-        </SubmitButton>
+        <div className="button-area">
+          <SubmitButton onClick={updateCategorie}>
+            <IoMdCreate />
+          </SubmitButton>
+          <SubmitButton onClick={deleteCategorie}>
+            <IoMdTrash />
+          </SubmitButton>
+        </div>
       </div>
       <div className="menu-itens">
         {
@@ -49,5 +70,10 @@ const StyledCategorieAdmin = styled.div`
     .categorie-header{
       display: flex;
       justify-content: space-between;
+    }
+
+    .button-area{
+      display: flex;
+      gap: 8px;
     }
 `;

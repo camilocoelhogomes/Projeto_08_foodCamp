@@ -63,12 +63,21 @@ const postProduct = ({
   productNumber,
 }, createHeaders(token));
 
+const deleteCategorie = ({
+  categorieId,
+  restaurantUrl,
+  token,
+}) => axios.post(`${API}/${restaurantUrl}/categorie/delete`, {
+  categorieId,
+}, createHeaders(token));
+
 const foodCampApi = {
   signUpApi,
   signInApi,
   postCategorie,
   getRestaurantInfo,
   postProduct,
+  deleteCategorie,
 };
 
 export default foodCampApi;

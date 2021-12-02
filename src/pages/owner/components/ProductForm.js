@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { IoIosSend } from 'react-icons/io';
 import { useParams } from 'react-router-dom';
 import StyledInput from '../../../Components/StyledInput';
 import { useRestaurant } from '../../../context/RestaurantContext';
 import StyledSelect from '../../../Components/StyledSelect';
-import UserContext from '../../../context/UserContext';
 import foodCampApi from '../../../services/api/foodCamp';
 import { useEditMenu } from '../../../context/EditMenuContext';
+import { useUser } from '../../../context/UserContext';
 
 const ProductForm = function () {
   const { restaurantData, setRestaurantData } = useRestaurant();
-  const { restaurantAuth } = useContext(UserContext);
+  const { restaurantAuth } = useUser();
   const { product, updateProduct } = useEditMenu();
   const { restaurantUrl } = useParams();
 

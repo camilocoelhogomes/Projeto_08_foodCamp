@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import StyledButton from '../../../Components/StyledButton';
 import StyledInput from '../../../Components/StyledInput';
-import UserContext from '../../../context/UserContext';
 import foodCampApi from '../../../services/api/foodCamp';
 import { useRestaurant } from '../../../context/RestaurantContext';
+import { useUser } from '../../../context/UserContext';
 
 const SignIn = function () {
-  const { userSign, updateUserSign, setRestaurantAuth } = useContext(UserContext);
+  const { userSign, updateUserSign, setRestaurantAuth } = useUser();
   const { setRestaurantData } = useRestaurant();
   const history = useHistory();
 

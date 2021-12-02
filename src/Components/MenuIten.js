@@ -56,6 +56,7 @@ const StyledMenuItem = styled.div`
     padding: 18px 14px 14px 14px;
     justify-content: space-between;
     margin: 18px 16px 0 0;
+
   .item-title{
     font-size: 16px;
     font-weight: bold;
@@ -69,11 +70,30 @@ const StyledMenuItem = styled.div`
     line-height: 18px;
   }
 
+.item-img{
+    width: 144px;
+    height: 87px;
+    border-radius: 4px;
+}
+
 .item-value{
   font-size: 16px;
   color: #000000;
   font-weight: normal;
   line-height: 19px;
+}
+
+.value-qtd{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dec-qtd{
+    color: #CF2B2B;
+}
+
+.add-qtd {
+    color: #32B72F;
 }
 
 `;

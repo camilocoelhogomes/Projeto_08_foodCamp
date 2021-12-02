@@ -26,10 +26,19 @@ const StyledCategorie = styled.div`
     font-family: var(--fontHeader);
     font-size: 26px;
     line-height: 32px;
-
+    }
     .menu-itens{
     display: flex;
     overflow-x: scroll;
-}
-}
+    }
+
+    .categorie-header{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button-area{
+      display: flex;
+      gap: 8px;
+    }
 `;

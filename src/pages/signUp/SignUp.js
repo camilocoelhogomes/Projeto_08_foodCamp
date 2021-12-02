@@ -8,7 +8,7 @@ import UserContext from '../../context/UserContext';
 import foodCampApi from '../../services/api/foodCamp';
 
 const SignUp = function () {
-  const { userSign, updateUserSign } = useContext(UserContext);
+  const { userSign, updateUserSign } = useUser;
 
   const submitSignUp = (e) => {
     e.preventDefault();
