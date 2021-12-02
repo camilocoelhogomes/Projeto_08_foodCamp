@@ -3,15 +3,19 @@ import styled from 'styled-components';
 import { IoMdCreate, IoMdTrash } from 'react-icons/io';
 import { useOrder } from '../../../context/OrderContext';
 import SubmitButton from './SubmitButton';
+import { useEditMenu } from '../../../context/EditMenuContext';
 
-const MenuItemAdmin = function ({ menuItem }) {
+const MenuItemAdmin = function ({ menuItem, categorieId }) {
   const { orderData, updateOrder } = useOrder();
-
+  const { setProduct } = useEditMenu();
+  const editItem = () => {
+    setProduct({ ...menuItem, categorieId });
+  };
   return (
 
     <StyledMenuItemAdmin isSelected={orderData.some((item) => item === menuItem.productId)}>
       <div className="button-area">
-        <SubmitButton>
+        <SubmitButton onClick={editItem}>
           <IoMdCreate />
         </SubmitButton>
         <SubmitButton>

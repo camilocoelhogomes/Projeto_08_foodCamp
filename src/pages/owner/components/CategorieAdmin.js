@@ -44,7 +44,13 @@ const CategorieAdmin = function ({ itens, title, id }) {
       </div>
       <div className="menu-itens">
         {
-          itens.map((item) => <MenuItemAdmin key={item.productId} menuItem={item} />)
+          itens.map((item) => (
+            <MenuItemAdmin
+              key={item.productId}
+              menuItem={item}
+              categoryId={id}
+            />
+          ))
         }
       </div>
     </StyledCategorieAdmin>

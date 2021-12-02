@@ -30,7 +30,9 @@ const EditMenuContext = function ({ children }) {
   }), [newCategorie,
     setNewCategorie,
     product,
-    updateProduct]);
+    setProduct,
+    updateProduct,
+    updateCategorie]);
 
   return (
     <Context.Provider value={constextValue}>
