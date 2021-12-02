@@ -1,12 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IoMdCreate, IoMdTrash } from 'react-icons/io';
 import { useOrder } from '../../../context/OrderContext';
+import SubmitButton from './SubmitButton';
 
 const MenuItemAdmin = function ({ menuItem }) {
   const { orderData, updateOrder } = useOrder();
 
   return (
+
     <StyledMenuItemAdmin isSelected={orderData.some((item) => item === menuItem.productId)}>
+      <div className="button-area">
+        <SubmitButton>
+          <IoMdCreate />
+        </SubmitButton>
+        <SubmitButton>
+          <IoMdTrash />
+        </SubmitButton>
+      </div>
       <img className="item-img" src={menuItem.productImg} alt={menuItem.productDescription} />
       <h2 className="item-title">
         {menuItem.productNumber}
@@ -56,6 +67,12 @@ const StyledMenuItemAdmin = styled.div`
     padding: 18px 14px 14px 14px;
     justify-content: space-between;
     margin: 18px 16px 0 0;
+
+    .button-area{
+      display: flex;
+      gap: 8px;
+      justify-content: space-between;
+    }
 
   .item-title{
     font-size: 16px;
