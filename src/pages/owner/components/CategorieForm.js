@@ -18,7 +18,8 @@ const CategorieForm = function () {
     foodCampApi.postCategorie(
       {
         token: restaurantAuth.userToken,
-        categorie: newCategorie,
+        categorie: newCategorie.categorieName,
+        categorieId: newCategorie.categorieId,
         restaurantUrl,
       },
     )
@@ -35,7 +36,7 @@ const CategorieForm = function () {
       <div className="input-area">
         <StyledInput
           required
-          value={newCategorie.categorieName}
+          value={newCategorie.categorieName || ''}
           onChange={(e) => updateCategorie({ input: 'categorieName', value: e.target.value })}
         />
         <button className="submit-categorie" type="submit">

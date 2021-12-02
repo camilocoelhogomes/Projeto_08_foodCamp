@@ -36,9 +36,11 @@ const postCategorie = (
     token,
     categorie,
     restaurantUrl,
+    categorieId,
   },
 ) => axios.post(`${API}/${restaurantUrl}/categorie`, {
   categorieName: categorie,
+  categorieId,
 }, createHeaders(token));
 
 const getRestaurantInfo = ({ url }) => axios.get(`${API}/${url}`);
