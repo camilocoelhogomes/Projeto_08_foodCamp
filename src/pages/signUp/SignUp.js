@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PassWordRequirements from './PassWordRequirements';
 import StyledButton from '../../Components/StyledButton';
 import StyledInput from '../../Components/StyledInput';
-import UserContext from '../../context/UserContext';
 import foodCampApi from '../../services/api/foodCamp';
+import { useUser } from '../../context/UserContext';
 
 const SignUp = function () {
-  const { userSign, updateUserSign } = useUser;
+  const { userSign, updateUserSign } = useUser();
 
   const submitSignUp = (e) => {
     e.preventDefault();

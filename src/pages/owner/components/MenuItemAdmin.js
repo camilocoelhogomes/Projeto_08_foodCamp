@@ -4,12 +4,26 @@ import { IoMdCreate, IoMdTrash } from 'react-icons/io';
 import { useOrder } from '../../../context/OrderContext';
 import SubmitButton from './SubmitButton';
 import { useEditMenu } from '../../../context/EditMenuContext';
+import foodCampApi from '../../../services/api/foodCamp';
+import { useUser } from '../../../context/UserContext';
+import { useRestaurant } from '../../../context/RestaurantContext';
 
 const MenuItemAdmin = function ({ menuItem, categorieId }) {
   const { orderData, updateOrder } = useOrder();
   const { setProduct } = useEditMenu();
+  const { restaurantAuth } = useUser();
+  const { setRestaurantData } = useRestaurant();
   const editItem = () => {
     setProduct({ ...menuItem, categorieId });
+  };
+
+  const deleteProduct = () => {
+    foodCampApi.deleteProduct({
+      token: restaurantAuth.userToken,
+      productId: menuItem.productId,
+      restaurantUrl: restaurantAuth.url,
+    }).then((res) => setRestaurantData(res.data))
+      .catch((err) => console.log(err.response));
   };
   return (
 
@@ -18,7 +32,7 @@ const MenuItemAdmin = function ({ menuItem, categorieId }) {
         <SubmitButton onClick={editItem}>
           <IoMdCreate />
         </SubmitButton>
-        <SubmitButton>
+        <SubmitButton onClick={deleteProduct}>
           <IoMdTrash />
         </SubmitButton>
       </div>

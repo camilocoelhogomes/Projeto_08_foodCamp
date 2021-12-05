@@ -5,10 +5,11 @@ import CategorieAdmin from './CategorieAdmin';
 
 const MenuPreview = function () {
   const { restaurantData } = useRestaurant();
+  if (!restaurantData.categories) return <div />;
   return (
     <StyledMenuPreview>
       <h1>Menu Admin</h1>
-      {restaurantData.categories
+      {restaurantData?.categories
         .map(
           (categorie) => (
             <CategorieAdmin
