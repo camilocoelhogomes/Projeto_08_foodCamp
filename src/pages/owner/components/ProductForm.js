@@ -23,8 +23,7 @@ const ProductForm = function () {
         token: restaurantAuth.userToken,
         restaurantUrl,
       },
-    ).then((res) => setRestaurantData(res.data))
-      .catch((err) => console.log(err.response));
+    ).then((res) => setRestaurantData(res.data));
   };
   return (
     <StyledProductForm onSubmit={submit}>

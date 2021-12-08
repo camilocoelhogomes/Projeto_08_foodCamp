@@ -14,8 +14,7 @@ const Owner = function () {
   const { restaurantUrl } = useParams();
   useEffect(() => {
     foodCampApi.getRestaurantInfo({ url: restaurantUrl })
-      .then((res) => setRestaurantData(res.data))
-      .catch((err) => console.log(err.response));
+      .then((res) => setRestaurantData(res.data));
   }, []);
   if (!restaurantData) return <div />;
   return (

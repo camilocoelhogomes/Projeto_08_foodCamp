@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PassWordRequirements from './PassWordRequirements';
 import StyledButton from '../../Components/StyledButton';
 import StyledInput from '../../Components/StyledInput';
@@ -9,17 +9,14 @@ import { useUser } from '../../context/UserContext';
 
 const SignUp = function () {
   const { userSign, updateUserSign } = useUser();
-
+  const history = useHistory();
   const submitSignUp = (e) => {
     e.preventDefault();
     if (!/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,}).*$/.test(userSign.restaurantPassword)) {
       return;
     }
     foodCampApi.signUpApi(userSign)
-      .then((res) => console.log(res))
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => history.push('/'));
   };
 
   return (

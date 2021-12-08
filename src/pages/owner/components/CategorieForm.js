@@ -26,8 +26,7 @@ const CategorieForm = function () {
       .then((res) => {
         setRestaurantData(res.data);
         setNewCategorie({});
-      })
-      .catch((err) => console.log(err.response));
+      });
   };
 
   return (

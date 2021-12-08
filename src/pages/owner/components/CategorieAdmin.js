@@ -25,8 +25,7 @@ const CategorieAdmin = function ({ itens, title, id }) {
       token: restaurantAuth.userToken,
       categorieId: id,
       restaurantUrl: restaurantAuth.url,
-    }).then((res) => setRestaurantData(res.data))
-      .catch((err) => console.log(err.response));
+    }).then((res) => setRestaurantData(res.data));
   };
 
   return (

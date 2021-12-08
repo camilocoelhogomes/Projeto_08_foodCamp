@@ -22,8 +22,7 @@ const MenuItemAdmin = function ({ menuItem, categorieId }) {
       token: restaurantAuth.userToken,
       productId: menuItem.productId,
       restaurantUrl: restaurantAuth.url,
-    }).then((res) => setRestaurantData(res.data))
-      .catch((err) => console.log(err.response));
+    }).then((res) => setRestaurantData(res.data));
   };
   return (
 
