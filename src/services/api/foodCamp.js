@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API = 'https://food-camp-cardapio.herokuapp.com';
-const API = 'http://localhost:4000';
+const API = 'https://food-camp-cardapio.herokuapp.com';
+// const API = 'http://localhost:4000';
 
 const createHeaders = (token) => ({ headers: { Authorization: `Bearer ${token}` } });
 

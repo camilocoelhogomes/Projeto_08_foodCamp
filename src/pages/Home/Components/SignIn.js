@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import StyledButton from '../../../Components/StyledButton';
@@ -11,17 +11,18 @@ const SignIn = function () {
   const { userSign, updateUserSign, setRestaurantAuth } = useUser();
   const { setRestaurantData } = useRestaurant();
   const history = useHistory();
-
+  const [error, setError] = useState(null);
   const submitSignIn = (e) => {
     e.preventDefault();
     foodCampApi.signInApi(userSign)
       .then((res) => {
+        setError(null);
         setRestaurantAuth(res.data);
         setRestaurantData(null);
         history.push(`/owner/${res.data.url}`);
       })
-      .catch((error) => {
-        console.log(error.response);
+      .catch(() => {
+        setError('E-mail ou Senha incorretos');
       });
   };
 
@@ -44,6 +45,7 @@ const SignIn = function () {
           type="password"
           value={(userSign?.restaurantPassword || '')}
           onChange={(e) => updateUserSign({ input: 'restaurantPassword', value: e.target.value })}
+          errorMessage={error}
         />
         <StyledButton type="submit">
           Entrar
