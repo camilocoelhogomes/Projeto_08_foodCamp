@@ -1,7 +1,7 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* eslint-disable no-tabs */
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'RelewayBold';
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -29,7 +30,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	  line-height: 1;
+    background-color: #EEEEEE;
+    padding: 24px 16px 16px 16px;
+
 }
 ol, ul {
 	list-style: none;
@@ -46,26 +50,32 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-button {
-	border: none;
-	background-color: inherit;
-	font-size: inherit;
-	font-family: inherit;
+
+h1{
+    font-family: var(--fontHeader);
+    font-size: 44px;
 }
-a {
-	text-decoration: none;
-	color: inherit;
-	width: fit-content;
-	height: fit-content;
+
+h2{
+    font-family: 'RelewayBold';
+    font-size: 26px;
+    line-height: 31px;
+    color:#000000;
+    font-weight: 700;
 }
-/* Config */
-:root{
-    --fontHeader: 'Righteous', cursive; 
-}
+
+input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
+
 *{
     box-sizing: border-box;
 }
-body{
-    font-family:'Roboto', sans-serif;
-	background-color: #EEEEEE;
+button{
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
 }
+`;
+
+export default GlobalStyle;
